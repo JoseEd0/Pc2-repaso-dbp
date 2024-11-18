@@ -1,34 +1,23 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { LoadScript } from "@react-google-maps/api";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import HomePage from "./pages/HomePage";
-import NavBar from "./components/NavBar";
-import PlacePage from "./pages/PlacePage";
-import UserProfile from "./pages/UserProfile";
-import { AuthProvider } from "./AuthContext";
+import LoginPage from "./Pages/LoginPage";
+import RegisterPage from "./Pages/RegisterPage";
+import AllProductos from "./Pages/AllProductos";
+import ProductDetail from "./Pages/ProductoDetails";
 
 const App: React.FC = () => {
   return (
-    <AuthProvider>
-      <LoadScript
-        googleMapsApiKey="AIzaSyDTW5hhttoJGo7usEohzDPfub_KR6KFTRU"
-        libraries={["places", "marker"]}
-      >
-        <Router>
-          <NavBar />
-          <Routes>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/home" element={<HomePage />} />
-            <Route path="/place/:id" element={<PlacePage />} />
-            <Route path="/" element={<HomePage />} />
-            <Route path="/profile" element={<UserProfile />} />
-          </Routes>
-        </Router>
-      </LoadScript>
-    </AuthProvider>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/productos" element={<AllProductos />} />
+          <Route path="/productos/:productId" element={<ProductDetail />} />
+          {/* Agrega más rutas aquí según sea necesario */}
+        </Routes>
+      </div>
+    </Router>
   );
 };
 
